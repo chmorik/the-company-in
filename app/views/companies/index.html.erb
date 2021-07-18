@@ -1,0 +1,27 @@
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
+<%= form_with model: @company do |form| %>
+  <%= form.text_field :domain %>
+  <%= form.submit %>
+<% end %>
+
+<table border="1">
+  <tr>
+    <td>Logo</td>
+    <td>Name</td>
+    <td>Type</td>
+    <td>Show</td>
+  </tr>
+  <% @companies.each do |c| %>
+  <tr>
+    <td><%if c.logo %>
+          <%= image_tag c.logo %>
+        <% end %>
+    </td>
+    <td><%= c.name %></td>
+    <td><%= c.company_type %></td>
+    <td><%= link_to 'Show', c %></td>
+  </tr>
+  <% end %>
+</table>
