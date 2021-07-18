@@ -4,6 +4,9 @@ class CompaniesController < ActionController::Base
     domain = params.dig('company', 'domain').to_s
     return redirect_to :companies, alert: 'No domain' if domain.blank?
 
+    @company = Company.find_by(domain: domain)
+    return redirect_to :companies, alert: 'Domain in system' if @company.present?
+
     company = Clearbit.find_by_domain(domain)
     return redirect_to :companies, notice: 'Company was not saved' if company.blank?
 
@@ -24,7 +27,6 @@ class CompaniesController < ActionController::Base
   def show
     @company = Company.find_by(id: params[:id])
     return redirect_to :companies, alert: 'No company found' if @company.blank?
-
   end
 
   def update
