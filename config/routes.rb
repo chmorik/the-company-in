@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   #
   root 'companies#index'
 
-  resources :companies, only: [:index, :show, :create]
+  resources :companies, only: [:index, :show, :create, :update]
 end

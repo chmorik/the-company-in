@@ -1,5 +1,10 @@
 <%= link_to 'Back', companies_path %>
 
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
+
 <div>Name:</div>
 <div><%= @company.name %></div>
 <div>Type:</div>
@@ -20,3 +25,10 @@
 <div><%= @company.location %></div>
 <div>Number of employees: </div>
 <div><%= @company.number_of_employees %></div>
+<div>Likes: </div>
+<div><%= @company.likes %></div>
+
+<%= form_with model: @company do |form| %>
+  <%= form.hidden_field :like %>
+  <%= form.submit 'Like' %>
+<% end %>

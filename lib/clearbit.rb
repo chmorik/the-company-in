@@ -12,7 +12,7 @@ class Clearbit
     end
 
     json = JSON.parse(response.body)
-    attrs = json.slice('name', 'domain', 'description', 'logo', 'location')
+    attrs = json.slice('name', 'domain', 'description', 'logo', 'location', 'id')
     attrs['industry'] = json['category']['industry']
     attrs['company_type'] = json['type']
     attrs['money_raised'] = json['metrics']['raised']
